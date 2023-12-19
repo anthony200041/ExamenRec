@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function registrarVehiculo(codigo, descripcion, marca, modelo, anio) {
+  // Crear un objeto con los datos del vehículo
+  const vehiculo = {
+    codigo: codigo,
+    descripcion: descripcion,
+    marca: marca,
+    modelo: modelo,
+    anio: anio
+  };
+
+  // Obtener los datos existentes del almacenamiento local (si los hay)
+  let vehiculosRegistrados = localStorage.getItem('vehiculos');
+
+  // Verificar si ya hay datos almacenados
+  if (vehiculosRegistrados) {
+    // Si hay datos, convertirlos a un array y añadir el nuevo vehículo
+    vehiculosRegistrados = JSON.parse(vehiculosRegistrados);
+    vehiculosRegistrados.push(vehiculo);
+  } else {
+    // Si no hay datos, crear un array con el nuevo vehículo
+    vehiculosRegistrados = [vehiculo];
+  }
+
+  // Guardar los datos actualizados en el almacenamiento local
+  localStorage.setItem('vehiculos', JSON.stringify(vehiculosRegistrados));
+}
+
+// Ejemplo de uso
+registrarVehiculo('ABC123', 'Sedán', 'Toyota', 'Corolla', 2023);
+
+    </script>
+</body>
+</html>
